@@ -49,22 +49,16 @@ function init(){
         }
     ]).then((response)=>{
         if(response.actions == 'viewDepts'){
-             db.viewDepartments().then(([rows]) =>{
-                console.table(rows)
-             }).then(()=>init())
+             getDepts();
         }
         else if(response.actions == 'viewRoles'){
-            db.viewRoles().then(([rows]) =>{
-                console.table(rows)
-             }).then(()=>init())
+           getRoles();
         }
         else if(response.actions == 'viewEmployees'){
-            db.viewEmployees().then(([rows]) =>{
-                console.table(rows)
-             }).then(()=>init())
+            getEmployees();
         }
         else if(response.actions == 'addDept'){
-            console.log("user chose add department")
+            addDeptInfo();
         }
         else if(response.actions == 'addRole'){
             console.log("user chose add role")
@@ -78,3 +72,30 @@ function init(){
     })
 }
 init();
+
+function getDepts(){
+    db.viewDepartments().then(([rows]) =>{
+        console.table(rows)
+     }).then(()=>init())
+}
+function getRoles(){
+    db.viewRoles().then(([rows]) =>{
+        console.table(rows)
+     }).then(()=>init())
+}
+function getEmployees(){
+    db.viewEmployees().then(([rows]) =>{
+        console.table(rows)
+     }).then(()=>init())
+}
+function addDeptInfo(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is the name of the department?',
+            name: 'name'
+        }
+    ]).then((response)=>{
+        db.addDept(response.name).then(console.log(`Added the ${response.name} department.`))
+    })
+}
