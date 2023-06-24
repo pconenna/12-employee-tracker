@@ -1,5 +1,5 @@
 const inquirer = require('inquirer')
-
+const db = require('./db/queries')
 function init(){
     /* create promts for 
     view all dpetartments 
@@ -9,6 +9,8 @@ function init(){
     add role
     add employee
     update employee role*/
+    
+
     inquirer.prompt([
         {
             type: 'list',
@@ -46,26 +48,29 @@ function init(){
             ]
         }
     ]).then((response)=>{
-        if(response == 'viewDepts'){
-            // code to do requested action
+        if(response.choice.value == 'viewDepts'){
+            console.log("user chose view departments")
+            let result = db.viewDepartments();
+            console.log(result)
         }
-        else if(response == 'viewRoles'){
-            // code to do requested action
+        else if(response.choice == 'viewRoles'){
+            console.log("user chose view roles")
         }
-        else if(response == 'viewEmployees'){
-            // code to do requested action
+        else if(response.choice == 'viewEmployees'){
+            console.log("user chose view employees")
         }
-        else if(response == 'addDept'){
-            // code to do requested action
+        else if(response.choice == 'addDept'){
+            console.log("user chose add department")
         }
-        else if(response == 'addRole'){
-            // code to do requested action
+        else if(response.choice == 'addRole'){
+            console.log("user chose add role")
         }
-        else if(response == 'addEmployee'){
-            // code to do requested action
+        else if(response.choice == 'addEmployee'){
+            console.log("user chose add employee")
         }
-        else if(response == 'updateEmployee'){
-            // code to do requested action
+        else if(response.choice == 'updateEmployee'){
+            console.log("user chose update employee")
         }
     })
 }
+init();
