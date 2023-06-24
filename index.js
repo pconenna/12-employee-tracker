@@ -48,27 +48,27 @@ function init(){
             ]
         }
     ]).then((response)=>{
-        if(response.choice.value == 'viewDepts'){
-            console.log("user chose view departments")
-            let result = db.viewDepartments();
-            console.log(result)
+        if(response.actions == 'viewDepts'){
+             db.viewDepartments().then(([rows]) =>{
+                console.table(rows)
+             }).then(()=>init())
         }
-        else if(response.choice == 'viewRoles'){
+        else if(response.actions == 'viewRoles'){
             console.log("user chose view roles")
         }
-        else if(response.choice == 'viewEmployees'){
+        else if(response.actions == 'viewEmployees'){
             console.log("user chose view employees")
         }
-        else if(response.choice == 'addDept'){
+        else if(response.actions == 'addDept'){
             console.log("user chose add department")
         }
-        else if(response.choice == 'addRole'){
+        else if(response.actions == 'addRole'){
             console.log("user chose add role")
         }
-        else if(response.choice == 'addEmployee'){
+        else if(response.actions == 'addEmployee'){
             console.log("user chose add employee")
         }
-        else if(response.choice == 'updateEmployee'){
+        else if(response.actions == 'updateEmployee'){
             console.log("user chose update employee")
         }
     })

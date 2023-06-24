@@ -4,29 +4,25 @@ class DB{
         this.connection = connection;
     }
     viewDepartments(){
-        this.connection.query(`SELECT * FROM departments`, (err, result) => {
-            if (err) {
-              return err;
-            }
-            return result;})
+        return this.connection.promise().query(`SELECT * FROM department`)
     }
     viewRoles(){
-        this.connection.query(`SELECT * FROM roles`)
+        return this.connection.promise().query(`SELECT * FROM role`)
     }
     viewEmployees(){
-        return this.connection.query(`SELECT * FROM employees`)
+        return this.connection.promise().query(`SELECT * FROM employees`)
     }
     addEmployee(fName,lName,role_id,manager_id){
-        return this.connection.query(`INSERT INTO employee VALUES (?,?,?,?)`, fName,lName,role_id,manager_id)
+        return this.connection.promise().query(`INSERT INTO employee VALUES (?,?,?,?)`, fName,lName,role_id,manager_id)
     }
     addRole(title, salary, department_id){
-        return this.connection.query(`INSERT INTO employee VALUES (?,?,?)`, title, salary, department_id)
+        return this.connection.promise().query(`INSERT INTO employee VALUES (?,?,?)`, title, salary, department_id)
     }
     addDept(name){
-        return this.connection.query(`INSERT INTO employee VALUES (?)`,name)
+        return this.connection.promise().query(`INSERT INTO employee VALUES (?)`,name)
     }
     updateEmployee(role_id, employee_id){
-        return this.connection.query(`UPDATE employee SET role_id = ? WHERE id = ? `,role_id, employee_id)
+        return this.connection.promise().query(`UPDATE employee SET role_id = ? WHERE id = ? `,role_id, employee_id)
     }
 }
 
