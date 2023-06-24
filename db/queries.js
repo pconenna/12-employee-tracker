@@ -10,7 +10,7 @@ class DB{
         return this.connection.promise().query(`SELECT * FROM role`)
     }
     viewEmployees(){
-        return this.connection.promise().query(`SELECT * FROM employees`)
+        return this.connection.promise().query(`SELECT * FROM employee`)
     }
     addEmployee(fName,lName,role_id,manager_id){
         return this.connection.promise().query(`INSERT INTO employee VALUES (?,?,?,?)`, fName,lName,role_id,manager_id)

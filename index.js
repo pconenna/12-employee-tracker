@@ -54,10 +54,14 @@ function init(){
              }).then(()=>init())
         }
         else if(response.actions == 'viewRoles'){
-            console.log("user chose view roles")
+            db.viewRoles().then(([rows]) =>{
+                console.table(rows)
+             }).then(()=>init())
         }
         else if(response.actions == 'viewEmployees'){
-            console.log("user chose view employees")
+            db.viewEmployees().then(([rows]) =>{
+                console.table(rows)
+             }).then(()=>init())
         }
         else if(response.actions == 'addDept'){
             console.log("user chose add department")
