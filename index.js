@@ -61,10 +61,10 @@ function init(){
             addDeptInfo();
         }
         else if(response.actions == 'addRole'){
-            console.log("user chose add role")
+            addRole();
         }
         else if(response.actions == 'addEmployee'){
-            console.log("user chose add employee")
+            addEmployee();
         }
         else if(response.actions == 'updateEmployee'){
             console.log("user chose update employee")
@@ -96,6 +96,76 @@ function addDeptInfo(){
             name: 'name'
         }
     ]).then((response)=>{
-        db.addDept(response.name).then(console.log(`Added the ${response.name} department.`))
-    })
+        db.addDept(response.name)
+        .then(console.log(`Added the ${response.name} department.`))
+    }).then(()=>init())
+}
+function addRole(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is the title of the role?',
+            name: 'title'
+        },
+        {
+            type: 'number',
+            message: `What is the role's salary?`,
+            name: 'salary'
+        },
+        {
+            type: 'number',
+            message: 'What is the department ID?',
+            name: 'department'
+        }
+
+    ]).then((response)=>{
+        db.addRole(response.title, response.salary, response.department)
+        .then(console.log(`Added the ${response.title} role.`))
+    }).then(()=>init())
+}
+function addEmployee(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: `What is the employee's first name?`,
+            name: 'fName'
+        },
+        {
+            type: 'input',
+            message: `What is the employee's last name?`,
+            name: 'lName'
+        },
+        {
+            type: 'number',
+            message: `What is the role ID?`,
+            name: 'role'
+        },
+        {
+            type: 'number',
+            message: 'What is the manager ID?',
+            name: 'manager'
+        }
+
+    ]).then((response)=>{
+        db.addEmployee(response.fName,response.lName,response.role,response.manager)
+        .then(console.log(`Added ${response.fName} ${response.lName} to employee table.`))
+    }).then(()=>init())
+}
+function updateEmployeeRole(){
+    inquirer.prompt([
+        {
+            type: 'number',
+            message: 'What is the employee ID?',
+            name: 'employee'
+        },
+        {
+            type: 'number',
+            message: `What is the role ID?`,
+            name: 'role'
+        },
+
+    ]).then((response)=>{
+        db.updateEmployeeRole(response.employee,response.role)
+        .then(console.log(`Updated employee with ID: ${response.employee} to role with ID: ${response.role}`))
+    }).then(()=>init())
 }

@@ -33,3 +33,6 @@ VALUES
 ('Riley','Green',9,7),
 ('Sarah','Cahill',10,null),
 ('Isabel','Castellanos',11,9);
+
+
+SELECT * FROM role;

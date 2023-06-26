@@ -21,7 +21,7 @@ class DB{
     addDept(name){
         return this.connection.promise().query(`INSERT INTO department(name) VALUES (?)`,name)
     }
-    updateEmployee(role_id, employee_id){
+    updateEmployeeRole(role_id, employee_id){
         return this.connection.promise().query(`UPDATE employee SET role_id = ? WHERE id = ? `,role_id, employee_id)
     }
 }
