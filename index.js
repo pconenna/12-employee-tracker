@@ -45,6 +45,10 @@ function init(){
                     name:`Update An Employee's Role`,
                     value:'updateEmployee'
                 },
+                {
+                    name:`Quit Application`,
+                    value:'quit'
+                },
             ]
         }
     ]).then((response)=>{
@@ -66,8 +70,11 @@ function init(){
         else if(response.actions == 'addEmployee'){
             addEmployee();
         }
-        else if(response.actions == 'updateEmployee'){
-            console.log("user chose update employee")
+        if(response.actions == 'updateEmployee'){
+            updateEmployeeRole();
+        }
+        else if(response.actions == 'quit'){
+            process.exit();
         }
     })
 }
@@ -147,7 +154,7 @@ function addEmployee(){
         }
 
     ]).then((response)=>{
-        db.addEmployee(response.fName,response.lName,response.role,response.manager)
+        db.addEmployee(response.fName, response.lName, response.role, response.manager)
         .then(console.log(`Added ${response.fName} ${response.lName} to employee table.`))
     }).then(()=>init())
 }
@@ -165,7 +172,7 @@ function updateEmployeeRole(){
         },
 
     ]).then((response)=>{
-        db.updateEmployeeRole(response.employee,response.role)
+        db.updateEmployeeRole(response.role,response.employee)
         .then(console.log(`Updated employee with ID: ${response.employee} to role with ID: ${response.role}`))
     }).then(()=>init())
 }
