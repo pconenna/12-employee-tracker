@@ -35,4 +35,4 @@ VALUES
 ('Isabel','Castellanos',11,9);
 
 
-SELECT * FROM role;
+-- SELECT * FROM employee;

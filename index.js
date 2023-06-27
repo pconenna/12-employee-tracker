@@ -150,12 +150,18 @@ function addEmployee(){
         {
             type: 'number',
             message: 'What is the manager ID?',
-            name: 'manager'
+            name: 'managerID'
         }
 
     ]).then((response)=>{
-        db.addEmployee(response.fName, response.lName, response.role, response.manager)
+        if(response.managerID){
+            db.addEmployee(response.fName, response.lName, response.role, response.managerID)
         .then(console.log(`Added ${response.fName} ${response.lName} to employee table.`))
+        }else{
+            db.addEmployee(response.fName, response.lName, response.role, null)
+        .then(console.log(`Added ${response.fName} ${response.lName} to employee table.`))
+        }
+        
     }).then(()=>init())
 }
 function updateEmployeeRole(){
