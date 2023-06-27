@@ -1,15 +1,6 @@
 const inquirer = require('inquirer')
 const db = require('./db/queries')
 function init(){
-    /* create promts for 
-    view all dpetartments 
-    view all roles
-    view all employees
-    add department
-    add role
-    add employee
-    update employee role*/
-    
 
     inquirer.prompt([
         {

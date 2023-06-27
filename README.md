@@ -3,6 +3,9 @@
 ## Description
 The employee tracker is a command line app that allows a user to interact with a database of employees and workplace departments. The prompts ask a user what they want to do. The user can view any table, add a department, add an employee, or update an employee's role.
 
+## Video Demo
+https://drive.google.com/file/d/1AQKIr71moZQaVQZCUkj8V5zngyPGRNHE/view?usp=sharing 
+
 ## Installation 
 The code must be cloned from the repository.
 
